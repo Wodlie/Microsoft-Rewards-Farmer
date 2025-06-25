@@ -1,0 +1,14 @@
+.git
+.gitignore
+README.md
+Dockerfile
+.dockerignore
+docker-compose.yml
+.vscode
+.pytest_cache
+.coverage
+*.pyc
+__pycache__
+logs/
+accounts.json
+version.txt

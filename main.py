@@ -101,6 +101,15 @@ def bannerDisplay():
 
 
 def setupAccounts() -> dict:
+    # First try to load from /etc/reward/accounts.json (Docker container)
+    dockerAccountPath = Path("/etc/reward/accounts.json")
+    if dockerAccountPath.exists():
+        logging.info("[ACCOUNT] Loading accounts from /etc/reward/accounts.json")
+        loadedAccounts = json.loads(dockerAccountPath.read_text(encoding="utf-8"))
+        random.shuffle(loadedAccounts)
+        return loadedAccounts
+    
+    # Fallback to local accounts.json file
     accountPath = Path(__file__).resolve().parent / "accounts.json"
     if not accountPath.exists():
         accountPath.write_text(

@@ -61,12 +61,8 @@ def getLatestVersion():
 
 
 if __name__ == "__main__":
-    currentVersion = getCurrentVersion()
-    latestVersion = getLatestVersion()
-    if currentVersion != latestVersion:
-        print("New version available !")
-        update(latestVersion)
-
+    # Auto-update is disabled in Docker container
+    print("Auto-update is disabled in this version.")
     print("Starting...")
 
     import main

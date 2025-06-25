@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  microsoft-rewards-farmer:
+    build: .
+    # 或者使用发布的镜像:
+    # image: ghcr.io/wodlie/microsoft-rewards-farmer:latest
+    container_name: rewards-farmer
+    restart: unless-stopped
+    volumes:
+      # 挂载账户配置文件
+      - ./accounts.json:/etc/reward/accounts.json:ro
+      # 挂载日志目录（可选）
+      - ./logs:/app/logs
+    environment:
+      - DISPLAY=:99
+      - TZ=Asia/Shanghai  # 设置时区
+    # 如果需要访问VNC进行调试，可以取消注释下面的端口映射
+    # ports:
+    #   - "5900:5900"
